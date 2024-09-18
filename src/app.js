@@ -2,17 +2,21 @@ const express = require("express");
 
 const app = express();
 
-app.get("/user", (req,res) => {
-    res.send({firstName : "Gopal", lastName : "Gupta"});
+const { adminAuth, userAuth } = require("./middlewares/auth");
+
+app.use("/admin",adminAuth);
+
+app.get("/user", userAuth,(req,res) => {
+    res.send("User data sent");
 })
 
-app.post("/user", (req,res) => {
-    //saving data to database
-    res.send("User Profile updated successfully");
+
+app.use("/admin/getAllData",(req, res) => {
+    res.send("All data sent");
 })
 
-app.delete("/user", (req,res) => {
-    res.send("User deleted successfully");
+app.use("/admin/deleteUser",(req, res) => {
+    res.send("User has been deleted");
 })
 
 
