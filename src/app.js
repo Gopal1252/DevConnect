@@ -1,25 +1,12 @@
 const express = require("express");
-
+const connectDB = require("./config/database")
 const app = express();
 
-const { adminAuth, userAuth } = require("./middlewares/auth");
-
-app.use("/admin",adminAuth);
-
-app.get("/user", userAuth,(req,res) => {
-    res.send("User data sent");
+connectDB().then(() => {
+    console.log("DB connected successfully!");
+    app.listen(3000, () => {
+        console.log("Server is successfully listening on port 3000");
+    });
+}).catch((err) => {
+    console.log("DB could not be connected!");
 })
-
-
-app.use("/admin/getAllData",(req, res) => {
-    res.send("All data sent");
-})
-
-app.use("/admin/deleteUser",(req, res) => {
-    res.send("User has been deleted");
-})
-
-
-app.listen(3000, () => {
-    console.log("Server is successfully listening on port 3000");
-});
