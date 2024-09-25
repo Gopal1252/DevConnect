@@ -8,7 +8,7 @@
 ### profileRouter
 - GET /profile/view
 - PATCH /profile/edit (Edit except for password)
-- PATCH /profile/password (forgot password api)
+- PATCH /profile/password (update Password api)
 
 
 ### connectionRequestRouter
