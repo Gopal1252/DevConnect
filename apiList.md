@@ -13,7 +13,9 @@
 
 ### connectionRequestRouter
 - POST /request/send/interested/:userId (showing interest/sending request)
-- POST /request/send/ignored/:userId (not showing interest)
+- POST /request/send/ignored/:userId (ignoring the profile)
+- POST /request/send/:status/:userId (making the above two statuses dynamic)
+
 - POST /request/review/accepted/:requestId
 - POST /request/review/rejected/:requestId
 
