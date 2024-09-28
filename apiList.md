@@ -5,7 +5,7 @@
 - POST /login
 - POST /logout
 
-### profileRouter
+### profileRouter 
 - GET /profile/view
 - PATCH /profile/edit (Edit except for password)
 - PATCH /profile/password (update Password api)
@@ -18,6 +18,7 @@
 
 - POST /request/review/accepted/:requestId
 - POST /request/review/rejected/:requestId
+- POST /request/review/:status/:requestId (m)
 
 ### userRouter
 - GET /user/connections

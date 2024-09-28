@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 const requestRouter = express.Router();
 
+//send the request (show interest or just ignore)
 requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res) => {
     try{
 
@@ -49,6 +50,40 @@ requestRouter.post("/request/send/:status/:toUserId", userAuth, async (req,res) 
         });
 
     }catch(err) {
+        res.status(400).send("ERROR: " + err.message);
+    }
+})
+
+//review the received requests (accept and reject)
+requestRouter.post("/request/review/:status/:requestId", userAuth, async (req,res) => {
+    try{
+        const loggedInUser = req.user;
+        const {requestId, status} = req.params;
+
+        //check if the status of the request is valid
+        const allowedStatus = ["accepted","rejected"];
+        if(!allowedStatus.includes(status)){
+            return res.status(400).json({message : "Status not allowed!"});
+        }
+
+        //get the connection request
+        const connectionRequest = await ConnectionRequest.findOne({
+            _id : requestId,
+            toUserId : loggedInUser,
+            status : "interested",
+        });
+        if(!connectionRequest){
+            return res.status(404).json({message : "Connection request not found!"});
+        }
+
+        //accept/reject the request
+        connectionRequest.status = status;
+
+        const data = await connectionRequest.save();
+
+        res.json({message : "Connection Request " + status, data});
+
+    }catch(err){
         res.status(400).send("ERROR: " + err.message);
     }
 })
