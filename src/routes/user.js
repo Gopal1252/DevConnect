@@ -81,14 +81,14 @@ userRouter.get("/user/connections", userAuth, async (req,res) => {
     }
 });
 
-userRouter.get("/feed?page=1&limit=10", userAuth, async (req,res) => {
+userRouter.get("/feed", userAuth, async (req,res) => {
     try{
 
         const loggedInUser = req.user;
 
         const page = parseInt(req.query.page) || 1;
         let limit = parseInt(req.query.limit) || 10;
-        limit = ((limit>50)? 50 : limit);
+        limit = limit > 50 ? 50 : limit;
         const skip = (page-1)*limit;
 
         const connectionRequests = await ConnectionRequest.find({
@@ -108,9 +108,10 @@ userRouter.get("/feed?page=1&limit=10", userAuth, async (req,res) => {
             ],
         }).select(USER_SAFE_DATA).skip(skip).limit(limit);
 
-        res.send(users);
+        res.json({ data: users });
 
     }catch(err){
+        console.log(err);
         res.status(400).json({message : err.message});
     }
 });
