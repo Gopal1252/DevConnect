@@ -71,9 +71,7 @@ userRouter.get("/user/connections", userAuth, async (req,res) => {
             }
         });
 
-        res.json({
-            data : connectionRequests,
-        })
+        res.json({data});
 
 
     }catch(err){
