@@ -1091,7 +1091,7 @@ sequenceDiagram
         L->>U: Show error
     end
     
-    rect rgb(200, 220, 250)
+    rect rgb(0, 0, 0)
     Note over U,DB: Protected Route Access
     U->>A: GET /profile/view
     A->>E: Request + Cookie
@@ -1117,7 +1117,7 @@ sequenceDiagram
     participant API as Express API
     participant DB as MongoDB
     
-    rect rgb(220, 250, 220)
+    rect rgb(0, 0, 0)
     Note over U1,DB: Sending Connection Request
     U1->>F: Browse feed
     F->>API: GET /feed
@@ -1138,7 +1138,7 @@ sequenceDiagram
     end
     end
     
-    rect rgb(250, 220, 220)
+    rect rgb(0, 0, 0)
     Note over U2,DB: Reviewing Connection Request
     U2->>R: View requests
     R->>API: GET /user/requests/received
