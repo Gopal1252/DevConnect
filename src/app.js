@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const connectDB = require("./config/database")
 const app = express();
@@ -8,7 +9,7 @@ const { userAuth } = require("./middlewares/auth");
 const cors = require("cors");
 
 app.use(cors({
-    origin : "http://localhost:5173",
+    origin : process.env.FRONTEND_URL,
     credentials : true,
 }));
 app.use(express.json());
@@ -24,10 +25,11 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
+const PORT = process.env.PORT || 3000;
 
 connectDB().then(() => {
     console.log("DB connected successfully!");
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
         console.log("Server is successfully listening on port 3000");
     });
 }).catch((err) => {

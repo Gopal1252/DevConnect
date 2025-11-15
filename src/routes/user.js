@@ -20,7 +20,7 @@ userRouter.get("/user/requests/received", userAuth, async (req,res) => {
 
         res.json({
             message : "Data fetched successfully!",
-            connectionRequests
+            data : connectionRequests
         })
 
     }catch(err){
@@ -115,4 +115,3 @@ userRouter.get("/feed", userAuth, async (req,res) => {
 });
 
 module.exports = userRouter;
-
