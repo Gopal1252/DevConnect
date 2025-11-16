@@ -30,7 +30,7 @@ Most endpoints require JWT authentication via HTTP-only cookies. The JWT token i
 
 ### 1. Sign Up
 
-Creates a new user account.
+Creates a new user account and automatically logs them in with a JWT token.
 
 **Endpoint:** `POST /signup`
 
@@ -56,8 +56,24 @@ Creates a new user account.
 ```json
 Status: 200 OK
 
-"User added successfully"
+{
+"message": "User added successfully",
+"data": {
+"_id": "507f1f77bcf86cd799439011",
+"firstName": "John",
+"lastName": "Doe",
+"emailId": "john.doe@example.com",
+"age": null,
+"gender": null,
+"photoUrl": null,
+"about": null,
+"skills": [],
+"createdAt": "2025-11-16T06:00:00.000Z",
+"updatedAt": "2025-11-16T06:00:00.000Z"
+}
+}
 ```
+**Note:** A JWT token is automatically set in an HTTP-only cookie named `token` with an 8-hour expiration.
 
 **Error Responses:**
 ```json

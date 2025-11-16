@@ -52,7 +52,7 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl : {
         type : String,
-        default : "https://www.ihna.edu.au/blog/wp-content/uploads/2022/10/user-dummy.png",
+        default : "https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg",
         validate(value){
             if(!validator.isURL(value)){
                 throw new Error("Invalid Photo URL: " + value);
