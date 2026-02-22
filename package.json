@@ -20,7 +20,16 @@
     "dotenv": "^17.2.3",
     "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.3",
-    "validator": "^13.12.0"
+    "mongoose": "^8.9.5",
+    "validator": "^13.15.22"
+  },
+  "overrides": {
+    "cookie": "^0.7.0",
+    "brace-expansion": "^1.1.12",
+    "qs": "^6.14.2",
+    "tar": "^7.5.8",
+    "jws": "^3.2.3",
+    "path-to-regexp": "^0.1.12",
+    "minimatch": "^10.2.1"
   }
 }
